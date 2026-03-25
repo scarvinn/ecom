@@ -4,8 +4,20 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import {Home} from "./src/home/Home.tsx"
+import {Login} from "./src/login/Login.tsx"
+import { createStaticNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
+const RootStack =createNativeStackNavigator({
+  initialRouteName:'Home',
+  screens:{
+    Home:Home,
+    Login: Login,
+  },
+});
+const Navigation =createStaticNavigation(RootStack);
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -22,9 +34,7 @@ function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
-        <Text>Hello world</Text>
-    </View>
+        <Navigation />
   );
 }
 
