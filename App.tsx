@@ -8,14 +8,27 @@ import {Home} from "./src/home/Home.tsx"
 import {Login} from "./src/login/Login.tsx"
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Signup } from './src/signup/Signup.tsx';
 
 
 const RootStack =createNativeStackNavigator({
   initialRouteName:'Home',
   screens:{
-    Home:Home,
+    Home:{
+      screen: Home,
+      options:{
+        headerShown: false,
+      }
+    },
+    Signup:{
+      screen: Signup,
+      options:{
+        headerShown: false,
+      }
+    },
     Login: Login,
   },
+
 });
 const Navigation =createStaticNavigation(RootStack);
 function App() {

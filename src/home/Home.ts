@@ -3,16 +3,16 @@ import { StyleSheet } from "react-native"
 export const homeStyles =   StyleSheet.create({
     screen:{
         flex: 1,
-        backgroundColor: "White"
+        backgroundColor: "white"
     },
     topScreen:{
-        flex:0.6,
+        flex:0.55,
         justifyContent:"flex-end",
         alignItems:"center",
         backgroundColor: "white"
     },
     bottomScreen:{
-        flex: 0.4,
+        flex: 0.45,
         justifyContent:"center",
         alignItems: "center",
         backgroundColor: "white"

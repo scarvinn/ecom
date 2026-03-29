@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
     button: {
+        height:58,
         padding: 15,
         borderRadius: 20,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     default: {
         backgroundColor: '#004CFF',
