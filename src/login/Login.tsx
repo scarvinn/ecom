@@ -5,8 +5,10 @@ import { Heart } from 'lucide-react-native';
 import { ClassicTextInput } from '../textInput/TextInput.tsx';
 import { useState } from 'react';
 import { ClassicButton } from '../button/Button.tsx';
+import { useNavigation } from '@react-navigation/native';
 export const Login = () => {
   const [email, useEmail] = useState('');
+  const navigation = useNavigation();
   return (
     <ImageBackground
       source={require('../images/loginBackground.png')}
@@ -45,7 +47,8 @@ export const Login = () => {
             margin: 5,
             marginLeft: 16,
             marginRight: 16,
-          }}></ClassicButton>
+          }}
+          onPress={() => navigation.goBack()}></ClassicButton>
       </View>
     </ImageBackground>
   );
