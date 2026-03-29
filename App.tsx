@@ -1,36 +1,45 @@
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, Text, useColorScheme, View,  } from 'react-native';
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import {Home} from "./src/home/Home.tsx"
-import {Login} from "./src/login/Login.tsx"
+import { Home } from './src/home/Home.tsx';
+import { Login } from './src/login/Login.tsx';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Signup } from './src/signup/Signup.tsx';
 
-
-const RootStack =createNativeStackNavigator({
-  initialRouteName:'Home',
-  screens:{
-    Home:{
+const RootStack = createNativeStackNavigator({
+  initialRouteName: 'Home',
+  screens: {
+    Home: {
       screen: Home,
-      options:{
+      options: {
         headerShown: false,
-      }
+      },
     },
-    Signup:{
+    Signup: {
       screen: Signup,
-      options:{
+      options: {
         headerShown: false,
-      }
+      },
     },
-    Login: Login,
+    Login: {
+      screen: Login,
+      options: {
+        headerShown: false,
+      },
+    },
   },
-
 });
-const Navigation =createStaticNavigation(RootStack);
+const Navigation = createStaticNavigation(RootStack);
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -38,7 +47,6 @@ function App() {
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <AppContent />
-      
     </SafeAreaProvider>
   );
 }
@@ -46,9 +54,7 @@ function App() {
 function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
 
-  return (
-        <Navigation />
-  );
+  return <Navigation />;
 }
 
 const styles = StyleSheet.create({

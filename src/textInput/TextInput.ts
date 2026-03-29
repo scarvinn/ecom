@@ -6,8 +6,6 @@ export const textInputStyles = StyleSheet.create({
     flex: 1,
     borderWidth: 0,
     padding: 18,
-    borderRadius: 24,
-    backgroundColor: '#f8f8f8',
   },
   container: {
     flexDirection: 'row',
@@ -16,5 +14,8 @@ export const textInputStyles = StyleSheet.create({
     marginRight: 16,
     margin: 5,
     height: 55,
+    borderRadius: 24,
+    backgroundColor: '#f5f5f5',
+    borderWidth: 0,
   },
 });

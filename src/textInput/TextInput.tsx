@@ -12,8 +12,10 @@ interface classicTextInputInterface extends TextInputProps {
   isPasswordEye?: boolean;
 }
 
-const passwordEye = <Eye size={24} color="#666" />;
-const passwordEyeOff = <EyeOff size={24} color="#666" />;
+const passwordEye = <Eye size={24} color="#666" style={{ marginRight: 20 }} />;
+const passwordEyeOff = (
+  <EyeOff size={24} color="#666" style={{ marginRight: 20 }} />
+);
 
 export const ClassicTextInput: React.FC<classicTextInputInterface> = ({
   isPasswordEye = false,
@@ -26,8 +28,7 @@ export const ClassicTextInput: React.FC<classicTextInputInterface> = ({
       <TextInput
         secureTextEntry={isPasswordEye && !eye}
         {...props}
-        style={textInputStyles.classicTextInputStyle}
-      />
+        style={textInputStyles.classicTextInputStyle}></TextInput>
 
       {isPasswordEye && (
         <TouchableOpacity onPress={() => setEye(!eye)}>
