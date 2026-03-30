@@ -14,7 +14,7 @@ import { Home } from './src/home/Home.tsx';
 import { Login } from './src/login/Login.tsx';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Signup } from './src/features/components/signup/Signup.ts';
+import { Signup } from './src/features/components/auth/signup/Signup.ts';
 
 const RootStack = createNativeStackNavigator({
     initialRouteName: 'Home',

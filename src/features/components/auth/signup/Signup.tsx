@@ -1,13 +1,13 @@
 import { View, Alert, ActivityIndicator } from 'react-native';
 import { ImageBackground, Text } from 'react-native';
 import { signupStyles } from './Signup.ts';
-import { ClassicTextInput } from '../../../common/textInput/TextInput.tsx';
+import { ClassicTextInput } from '../../../../common/textInput/TextInput.tsx';
 import { useState } from 'react';
-import { ClassicButton } from '../../../common/button/Button.tsx';
-import { Ava } from '../../../common/avaPicker/AvaPick.tsx';
+import { ClassicButton } from '../../../../common/button/Button.tsx';
+import { Ava } from '../../../../common/avaPicker/AvaPick.tsx';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { signinPost } from '../../../services/axiosFunctions/signinPost.ts';
+import { signinPost } from '../../../../services/axiosFunctions/signinPost.ts';
 import axios from 'axios';
 
 export const Signup = () => {
