@@ -1,37 +1,32 @@
-import { View, Alert, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Alert, View } from 'react-native';
 import { ImageBackground, Text } from 'react-native';
-import { signupStyles } from './Signup.ts';
-import { ClassicTextInput } from '../textInput/TextInput.tsx';
+import { loginStyles } from './Login.ts';
+import { Heart } from 'lucide-react-native';
+import { ClassicTextInput } from '../common/textInput/TextInput.tsx';
 import { useState } from 'react';
-import { ClassicButton } from '../button/Button.tsx';
-import { Ava } from '../avaPicker/AvaPick.tsx';
-import { ScrollView } from 'react-native';
+import { ClassicButton } from '../common/button/Button.tsx';
 import { useNavigation } from '@react-navigation/native';
-import { signinPost } from '../axiosFunctions/signinPost.ts';
+import { loginPost } from '../axiosFunctions/loginPost.ts';
 import axios from 'axios';
-
-export const Signup = () => {
+export const Login = () => {
     const [email, useEmail] = useState('');
-    const [password, usePassword] = useState('');
-    const [passwordConfimation, usePasswordConfimation] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [password, setPassword] = useState('');
+    const [isaLoading, setIsLoading] = useState(false);
     const navigation = useNavigation();
     const activity = (
         <ActivityIndicator
             size="large"
-            style={signupStyles.activityIndecs}></ActivityIndicator>
+            style={loginStyles.activityIndecs}></ActivityIndicator>
     );
     const validateData = async () => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!regex.test(email)) {
             Alert.alert('Wrong email!');
-        } else if (password !== passwordConfimation) {
-            Alert.alert("Password doesn't match!");
         } else {
             setIsLoading(true);
             try {
-                const response = await signinPost({ email, password });
+                const response = await loginPost({ email, password });
                 Alert.alert(JSON.stringify(response));
             } catch (error) {
                 if (axios.isAxiosError(error))
@@ -44,17 +39,17 @@ export const Signup = () => {
         }
     };
     return (
-        <ScrollView style={signupStyles.container}>
-            <ImageBackground
-                source={require('../images/bubleBackground.png')}
-                resizeMode="stretch"
-                style={signupStyles.backImage}>
-                <Text style={signupStyles.titleText}>{'Create\nAccount'}</Text>
-                <View style={signupStyles.noAvaImage}>
-                    <Ava />
-                </View>
-            </ImageBackground>
-            <View style={signupStyles.bottomView}>
+        <ImageBackground
+            source={require('../images/loginBackground.png')}
+            resizeMode="stretch"
+            style={loginStyles.container}>
+            <View style={{ flex: 0.4 }}></View>
+            <View style={loginStyles.bottomView}>
+                <Text style={loginStyles.textHeader}>Login</Text>
+
+                <Text style={loginStyles.textArticle}>
+                    Good to see you back! <Heart size={19} color="#000000" />
+                </Text>
                 <ClassicTextInput
                     placeholder="Email"
                     value={email}
@@ -64,22 +59,13 @@ export const Signup = () => {
                 />
                 <ClassicTextInput
                     placeholder="Password"
-                    textContentType="password"
                     value={password}
-                    onChangeText={usePassword}
+                    onChangeText={setPassword}
                     autoCapitalize="none"
                     autoCorrect={false}
                     isPasswordEye={true}
                 />
-                <ClassicTextInput
-                    placeholder="Confirm password"
-                    value={passwordConfimation}
-                    onChangeText={usePasswordConfimation}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    isPasswordEye={true}
-                />
-                {isLoading ? (
+                {isaLoading ? (
                     activity
                 ) : (
                     <ClassicButton
@@ -95,7 +81,6 @@ export const Signup = () => {
                         {' '}
                     </ClassicButton>
                 )}
-
                 <ClassicButton
                     title="Cancel"
                     variant="white"
@@ -105,10 +90,8 @@ export const Signup = () => {
                         marginLeft: 16,
                         marginRight: 16,
                     }}
-                    onPress={() => navigation.goBack()}>
-                    {' '}
-                </ClassicButton>
+                    onPress={() => navigation.goBack()}></ClassicButton>
             </View>
-        </ScrollView>
+        </ImageBackground>
     );
 };
