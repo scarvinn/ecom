@@ -1,10 +1,4 @@
-import {
-    View,
-    Image,
-    TouchableOpacity,
-    Alert,
-    ActivityIndicator,
-} from 'react-native';
+import { View, Alert, ActivityIndicator } from 'react-native';
 import { ImageBackground, Text } from 'react-native';
 import { signupStyles } from './Signup.ts';
 import { ClassicTextInput } from '../textInput/TextInput.tsx';
@@ -13,6 +7,8 @@ import { ClassicButton } from '../button/Button.tsx';
 import { Ava } from '../avaPicker/AvaPick.tsx';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { signinPost } from '../axiosFunctions/signinPost.ts';
+import axios from 'axios';
 
 export const Signup = () => {
     const [email, useEmail] = useState('');
@@ -25,7 +21,7 @@ export const Signup = () => {
             size="large"
             style={signupStyles.activityIndecs}></ActivityIndicator>
     );
-    const validateData = () => {
+    const validateData = async () => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!regex.test(email)) {
@@ -34,9 +30,19 @@ export const Signup = () => {
             Alert.alert("Password doesn't match!");
         } else {
             setIsLoading(true);
+            try {
+                const response = await signinPost({ email, password });
+                Alert.alert(JSON.stringify(response));
+            } catch (error) {
+                if (axios.isAxiosError(error))
+                    Alert.alert(
+                        'Unexpected error',
+                        JSON.stringify(error.response?.data),
+                    );
+            }
+            setIsLoading(false);
         }
     };
-
     return (
         <ScrollView style={signupStyles.container}>
             <ImageBackground
