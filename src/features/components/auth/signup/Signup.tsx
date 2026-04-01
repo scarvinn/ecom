@@ -7,7 +7,7 @@ import { ClassicButton } from '../../../../common/button/Button.tsx';
 import { Ava } from '../../../../common/avaPicker/AvaPick.tsx';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { signinPost } from '../../../../services/axiosFunctions/signinPost.ts';
+import { signupPost } from '../../../../services/axiosFunctions/signupPost.ts';
 import axios from 'axios';
 
 export const Signup = () => {
@@ -31,7 +31,7 @@ export const Signup = () => {
         } else {
             setIsLoading(true);
             try {
-                const response = await signinPost({ email, password });
+                const response = await signupPost({ email, password });
                 Alert.alert(JSON.stringify(response));
             } catch (error) {
                 if (axios.isAxiosError(error))
@@ -84,30 +84,15 @@ export const Signup = () => {
                 ) : (
                     <ClassicButton
                         title="Done"
-                        customStyle={{
-                            justifyContent: 'center',
-                            margin: 5,
-                            marginLeft: 16,
-                            marginRight: 16,
-                            marginTop: 50,
-                        }}
-                        onPress={validateData}>
-                        {' '}
-                    </ClassicButton>
+                        customStyle={signupStyles.doneButton}
+                        onPress={validateData}></ClassicButton>
                 )}
 
                 <ClassicButton
                     title="Cancel"
                     variant="white"
-                    customStyle={{
-                        justifyContent: 'center',
-                        margin: 5,
-                        marginLeft: 16,
-                        marginRight: 16,
-                    }}
-                    onPress={() => navigation.goBack()}>
-                    {' '}
-                </ClassicButton>
+                    customStyle={signupStyles.cancelButton}
+                    onPress={() => navigation.goBack()}></ClassicButton>
             </View>
         </ScrollView>
     );

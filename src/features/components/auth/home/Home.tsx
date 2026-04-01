@@ -10,7 +10,7 @@ export const Home = () => {
             <View style={homeStyles.topScreen}>
                 <Image
                     source={require('../../../../assets/home-logo.png')}
-                    style={{ width: 168, height: 168 }}
+                    style={homeStyles.imageStyle}
                 />
                 <Text style={homeStyles.text}>Shoppe</Text>
                 <Text>Beatiful eCommerence app</Text>
@@ -19,13 +19,13 @@ export const Home = () => {
                 <ClassicButton
                     onPress={() => navigation.navigate('Signup')}
                     title="Let's get started"
-                    customStyle={{ width: 340, height: 60 }}
+                    customStyle={homeStyles.signupButton}
                 />
                 <ClassicButton
                     onPress={() => navigation.navigate('Login')}
                     title="I already have an account"
                     variant="white"
-                    customStyle={{ width: 250, height: 50 }}
+                    customStyle={homeStyles.loginButton}
                 />
             </View>
         </View>

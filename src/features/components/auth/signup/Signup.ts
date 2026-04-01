@@ -29,4 +29,17 @@ export const signupStyles = StyleSheet.create({
     activityIndecs: {
         marginTop: 30,
     },
+    doneButton: {
+        justifyContent: 'center',
+        margin: 5,
+        marginLeft: 16,
+        marginRight: 16,
+        marginTop: 50,
+    },
+    cancelButton: {
+        justifyContent: 'center',
+        margin: 5,
+        marginLeft: 16,
+        marginRight: 16,
+    },
 });

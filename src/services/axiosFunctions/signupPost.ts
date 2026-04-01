@@ -1,10 +1,10 @@
 import axios from 'axios';
 import api from './api';
-interface signinInterface {
+interface signupInterface {
     email: string;
     password: string;
 }
-export const signinPost = async ({ email, password }: signinInterface) => {
+export const signupPost = async ({ email, password }: signupInterface) => {
     try {
         const userData = {
             email: email,

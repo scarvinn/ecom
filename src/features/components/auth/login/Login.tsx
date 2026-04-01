@@ -70,13 +70,7 @@ export const Login = () => {
                 ) : (
                     <ClassicButton
                         title="Done"
-                        customStyle={{
-                            justifyContent: 'center',
-                            margin: 5,
-                            marginLeft: 16,
-                            marginRight: 16,
-                            marginTop: 50,
-                        }}
+                        customStyle={loginStyles.doneButton}
                         onPress={validateData}>
                         {' '}
                     </ClassicButton>
@@ -84,12 +78,7 @@ export const Login = () => {
                 <ClassicButton
                     title="Cancel"
                     variant="white"
-                    customStyle={{
-                        justifyContent: 'center',
-                        margin: 5,
-                        marginLeft: 16,
-                        marginRight: 16,
-                    }}
+                    customStyle={loginStyles.cancelButton}
                     onPress={() => navigation.goBack()}></ClassicButton>
             </View>
         </ImageBackground>
