@@ -1,6 +1,6 @@
 import { Image, Text, View } from 'react-native';
 import { homeStyles } from './Home.ts';
-import { ClassicButton } from '../common/button/Button.tsx';
+import { ClassicButton } from '../../../../common/button/Button.tsx';
 import { useNavigation } from '@react-navigation/native';
 
 export const Home = () => {
@@ -9,7 +9,7 @@ export const Home = () => {
         <View style={homeStyles.screen}>
             <View style={homeStyles.topScreen}>
                 <Image
-                    source={require('../images/home-logo.png')}
+                    source={require('../../../../assets/home-logo.png')}
                     style={{ width: 168, height: 168 }}
                 />
                 <Text style={homeStyles.text}>Shoppe</Text>

@@ -46,7 +46,7 @@ export const Signup = () => {
     return (
         <ScrollView style={signupStyles.container}>
             <ImageBackground
-                source={require('../images/bubleBackground.png')}
+                source={require('../../../../assets/bubleBackground.png')}
                 resizeMode="stretch"
                 style={signupStyles.backImage}>
                 <Text style={signupStyles.titleText}>{'Create\nAccount'}</Text>

@@ -2,12 +2,12 @@ import { ActivityIndicator, Alert, View } from 'react-native';
 import { ImageBackground, Text } from 'react-native';
 import { loginStyles } from './Login.ts';
 import { Heart } from 'lucide-react-native';
-import { ClassicTextInput } from '../common/textInput/TextInput.tsx';
 import { useState } from 'react';
-import { ClassicButton } from '../common/button/Button.tsx';
 import { useNavigation } from '@react-navigation/native';
-import { loginPost } from '../axiosFunctions/loginPost.ts';
 import axios from 'axios';
+import { ClassicButton } from '../../../../common/button/Button.tsx';
+import { ClassicTextInput } from '../../../../common/textInput/TextInput.tsx';
+import { loginPost } from '../../../../services/axiosFunctions/loginPost.ts';
 export const Login = () => {
     const [email, useEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -40,7 +40,7 @@ export const Login = () => {
     };
     return (
         <ImageBackground
-            source={require('../images/loginBackground.png')}
+            source={require('../../../../assets/loginBackground.png')}
             resizeMode="stretch"
             style={loginStyles.container}>
             <View style={{ flex: 0.4 }}></View>

@@ -10,11 +10,11 @@ import {
     SafeAreaProvider,
     useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { Home } from './src/home/Home.tsx';
-import { Login } from './src/login/Login.tsx';
+import { Login } from './src/features/components/auth/login/Login.tsx';
+import { Signup } from './src/features/components/auth/signup/Signup.tsx';
+import { Home } from './src/features/components/auth/home/Home.tsx';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Signup } from './src/features/components/auth/signup/Signup.ts';
 
 const RootStack = createNativeStackNavigator({
     initialRouteName: 'Home',
