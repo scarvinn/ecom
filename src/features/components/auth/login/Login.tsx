@@ -12,7 +12,7 @@ export const Login = () => {
     const [email, useEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isaLoading, setIsLoading] = useState(false);
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     const activity = (
         <ActivityIndicator
             size="large"
@@ -28,6 +28,7 @@ export const Login = () => {
             try {
                 const response = await loginPost({ email, password });
                 Alert.alert(JSON.stringify(response));
+                navigation.navigate('mainScreens');
             } catch (error) {
                 if (axios.isAxiosError(error))
                     Alert.alert(

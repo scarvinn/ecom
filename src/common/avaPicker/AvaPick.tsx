@@ -2,10 +2,12 @@ import { Image, StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 import { Alert, TouchableOpacity } from 'react-native';
 import { launchImageLibrary, MediaType } from 'react-native-image-picker';
-
-export const Ava = () => {
-    const [imageUri, setImageUri] = useState<string | null>(null);
-    const openImagePicker = () => {
+interface avaInterface {
+    onImageSelect: (asset: any) => void;
+}
+export const Ava = ({ onImageSelect }: avaInterface) => {
+    const [imageUri, setImageUri] = useState<string>('');
+    const openImagePicker = async () => {
         const options = {
             mediaType: 'photo' as MediaType,
             includeBase64: false,
@@ -21,6 +23,7 @@ export const Ava = () => {
                 const selectedUri = response.assets?.[0].uri;
                 if (selectedUri) {
                     setImageUri(selectedUri);
+                    onImageSelect(selectedUri);
                 }
             }
         });

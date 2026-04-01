@@ -1,4 +1,5 @@
 import { View } from 'react-native';
-export const profileScreen = () => {
+import { Ava } from '../../../common/avaPicker/AvaPick';
+export const ProfileScreen = () => {
     return <View></View>;
 };

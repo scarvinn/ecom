@@ -1,4 +1,4 @@
-import { View, Alert, ActivityIndicator } from 'react-native';
+import { View, Alert, ActivityIndicator, Image } from 'react-native';
 import { ImageBackground, Text } from 'react-native';
 import { signupStyles } from './Signup.ts';
 import { ClassicTextInput } from '../../../../common/textInput/TextInput.tsx';
@@ -9,12 +9,14 @@ import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { signupPost } from '../../../../services/axiosFunctions/signupPost.ts';
 import axios from 'axios';
+import { uploadAvatar } from '../../../../services/axiosFunctions/uploadAvatar.ts';
 
 export const Signup = () => {
     const [email, useEmail] = useState('');
     const [password, usePassword] = useState('');
     const [passwordConfimation, usePasswordConfimation] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedAsset, setSelectedAsset] = useState<any>(null);
     const navigation = useNavigation();
     const activity = (
         <ActivityIndicator
@@ -23,7 +25,6 @@ export const Signup = () => {
     );
     const validateData = async () => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (!regex.test(email)) {
             Alert.alert('Wrong email!');
         } else if (password !== passwordConfimation) {
@@ -31,8 +32,18 @@ export const Signup = () => {
         } else {
             setIsLoading(true);
             try {
+                console.log('1. Початок реєстрації...');
                 const response = await signupPost({ email, password });
-                Alert.alert(JSON.stringify(response));
+                console.log('2. Відповідь сервера (повна):', response.data);
+                const userId = response.data
+                    ? response.data.userid
+                    : response.userid;
+                console.log('3. ID отримано:', userId);
+                await uploadAvatar({
+                    userId: userId,
+                    imageUri: selectedAsset,
+                });
+                console.log('5. Завантаження фото завершено');
             } catch (error) {
                 if (axios.isAxiosError(error))
                     Alert.alert(
@@ -51,7 +62,7 @@ export const Signup = () => {
                 style={signupStyles.backImage}>
                 <Text style={signupStyles.titleText}>{'Create\nAccount'}</Text>
                 <View style={signupStyles.noAvaImage}>
-                    <Ava />
+                    <Ava onImageSelect={setSelectedAsset} />
                 </View>
             </ImageBackground>
             <View style={signupStyles.bottomView}>
